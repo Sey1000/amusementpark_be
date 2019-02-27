@@ -21,9 +21,20 @@ class MembershipsController < ApplicationController
     {
       id: m.id,
       user: User.find(m.user_id),
-      amusementpark: Amusementpark.find(m.amusementpark_id),
+      amusementpark: render_amusementpark(Amusementpark.find(m.amusementpark_id)),
       created_at: m.created_at,
       updated_at: m.updated_at
+    }
+  end
+
+  def render_amusementpark(ap)
+    {
+      id: ap.id,
+      name: ap.name,
+      city: ap.city,
+      created_at: ap.created_at,
+      updated_at: ap.updated_at,
+      rollercoasters: ap.rollercoasters
     }
   end
 end
